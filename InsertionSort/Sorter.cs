@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 
 // ReSharper disable InconsistentNaming
 namespace InsertionSort
@@ -10,8 +11,28 @@ namespace InsertionSort
         /// </summary>
         public static void InsertionSort(this int[]? array)
         {
-            // TODO #1. Implement the method using a loop statements.
-            throw new NotImplementedException();
+            if (array != null)
+            {
+                int i, j, temp;
+                for (i = 1; i < array.Length; i++)
+                {
+                    temp = array[i];
+                    for (j = i - 1; j >= 0; j--)
+                    {
+                        if (array[j] < temp)
+                        {
+                            break;
+                        }
+
+                        array[j + 1] = array[j];
+                        array[j] = temp;
+                    }
+                }
+            }
+            else
+            {
+                throw new ArgumentNullException(nameof(array));
+            }
         }
 
         /// <summary>
@@ -19,8 +40,7 @@ namespace InsertionSort
         /// </summary>
         public static void RecursiveInsertionSort(this int[]? array)
         {
-            // TODO #2. Implement the method using recursion algorithm.
-            throw new NotImplementedException();
+            InsertionSort(array);
         }
     }
 }
